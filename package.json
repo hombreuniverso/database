@@ -1,0 +1,24 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "Working with PostgreSQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hombreuniverso/database.git"
+  },
+  "author": "Colin Karr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hombreuniverso/database/issues"
+  },
+  "homepage": "https://github.com/hombreuniverso/database#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
