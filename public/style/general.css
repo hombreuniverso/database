@@ -1,6 +1,8 @@
 /*General Styles*/
 
 body {
+    display: flex;
+    justify-content: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     background-color:aqua;
