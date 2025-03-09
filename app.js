@@ -13,8 +13,15 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
 
+//Set view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+//Set static files
+const assetsPath = path.join(__dirname, 'public');
+app.use(express.static(assetsPath));
+
 //Create route
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.render('index', {title: 'Homepage'});
 });
-
