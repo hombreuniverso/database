@@ -4,14 +4,23 @@
   <!--Head template ejs-->
   <%- include('./partials/header.ejs') %>
   <body>
-    <h1><%= title %></h1>
-    <div class="form-container">
-      <form action="/users" method="POST">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" />
-      </form>
+    <div class="display-container">
+      <h1><%= title %></h1>
+      <div class="form-container">
+        <form action="/new" method="POST">
+          <div class="form-submit-container">
+            <div class="label-input-container">
+              <label for="username">Full Name</label>
+              <input type="text" name="username" required />
+            </div>
+            <div class="button-container">
+              <button>Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <br />
+      <a href="/">Back</a>
     </div>
-    <br />
-    <a href="/">Back</a>
   </body>
 </html>

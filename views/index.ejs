@@ -1,11 +1,20 @@
 <!--index template ejs-->
 <!DOCTYPE html>
 <html lang="en">
-   <!--Head template ejs-->
-   <%- include('./partials/header.ejs') %>
-    <body>
-        <h1><%= title %></h1>
+  <!--Head template ejs-->
+  <%- include('./partials/header.ejs') %>
+  <body>
+    <div class="display-container">
+      <h1><%= title %></h1>
 
-        <p><a href="/users">Create a new user</a></p>
-    </body>
+      <p><a href="/new">Create a new user</a></p>
+ 
+      <%if(users.length != 0){%>
+      <%= users%>
+  <%}%>
+ <%if(users.length == 0){%>
+<p>There are no users as yet.</p>
+  <%}%>
+    </div>
+  </body>
 </html>

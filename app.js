@@ -9,7 +9,7 @@ const usersRouter = require("./routes/usersRouter");
 const app = express();
 
 //Set port variable
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 //Create server
 app.listen(PORT, () => {
@@ -23,6 +23,15 @@ app.set("view engine", "ejs");
 //Set static files
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
+
+//Set body parser
+const bodyParser = require("body-parser");
+//app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(express.urlencoded({extended: true}));
+
+//In case the form data is being sent as JSON
+//app.use(express.json());
 
 //Create routes
 
