@@ -1,0 +1,12 @@
+/*User Form*/
+.form-submit-container {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+   
+  }
+  
+  .display-container .user-form-back {
+    margin-bottom: 10px;
+    }
+  

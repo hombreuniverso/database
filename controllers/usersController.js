@@ -6,11 +6,13 @@ db.forEach(data =>{
   console.log(data);
 });
 
+let users = db;
+
 //Create index (Homepage)
 exports.usersListGet =
   ("/",
   (req, res) => {
-    let users = db;
+   // let users = db;
     res.render("index", { title: "Homepage", users: users });
   });
 
@@ -25,7 +27,7 @@ exports.usersFormGet =
 //Post user infomation
 exports.usersPost = ("/new", (req, res) => {
 
-  let users = db;
+  //let users = db;
   
   try{
     users.push(req.body.username);

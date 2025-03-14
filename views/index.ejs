@@ -8,13 +8,17 @@
       <h1><%= title %></h1>
 
       <p><a href="/new">Create a new user</a></p>
- 
+
       <%if(users.length != 0){%>
-      <%= users%>
-  <%}%>
- <%if(users.length == 0){%>
-<p>There are no users as yet.</p>
-  <%}%>
+      <ul>
+        <%for(let i = 0; i < users.length; i++) {%>
+        <li><%= users[i]%></li>
+        <%}%>
+      </ul>
+
+      <%}%> <%if(users.length == 0){%>
+      <p>There are no users as yet.</p>
+      <%}%>
     </div>
   </body>
 </html>

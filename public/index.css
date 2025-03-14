@@ -1,0 +1,14 @@
+
+/*Index Home page*/
+.display-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 400px;
+    height: auto;
+  
+    background-color: white;
+  
+    border: solid 2px black;
+  }
