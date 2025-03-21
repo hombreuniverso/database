@@ -9,7 +9,7 @@ const usersRouter = require("./routes/usersRouter");
 const app = express();
 
 //Set port variable
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 //Create server
 app.listen(PORT, () => {
