@@ -10,7 +10,11 @@ db.forEach((data) => {
 
 let users = db;
 
+<<<<<<< HEAD
 //const alphaErr = "must be only letters";
+=======
+const alphaErr = "must be only letters";
+>>>>>>> f6aaefabda376232461bf2d7dfafa007e9cc5a9f
 const nameLengthErr = "must be between 1 and 10 characters";
 
 //Create index (Homepage)
