@@ -1,36 +1,25 @@
 //indexController
 
 //Imports
-const db = require("../models/db");
+const db = require("../models/queries");
 const { body, validationResult } = require("express-validator");
 
-db.forEach((data) => {
-  console.log(data);
-});
-
-let users = db;
-
-<<<<<<< HEAD
-//const alphaErr = "must be only letters";
-=======
 const alphaErr = "must be only letters";
->>>>>>> f6aaefabda376232461bf2d7dfafa007e9cc5a9f
 const nameLengthErr = "must be between 1 and 10 characters";
 
 //Create index (Homepage)
-exports.usersListGet =
-  ("/",
-  (req, res) => {
-    // let users = db;
-    res.render("index", { title: "Homepage", users: users });
-  });
+async function usersListGet(req, res) {
+  const usernames = await db.getAllUsernames();
+  console.log("Usernames: ", usernames);
+  //res.send("Usernames: " + usernames.map(user => user.username).join(", "));
+  let users = usernames.map((user) => user.username);
+  res.render("index", { title: "Homepage", users: users });
+}
 
 //Create user form
-exports.usersFormGet =
-  ("/new",
-  (req, res) => {
-    res.render("userForm", { title: "User Form" });
-  });
+async function usersFormGet(req, res) {
+  res.render("userForm", { title: "User Form" });
+}
 
 //Validation and sanitization
 const validateUser = [
@@ -40,30 +29,25 @@ const validateUser = [
     .withMessage(`User name ${nameLengthErr}.`),
 ];
 
-//Post user infomation
-exports.usersPost = [
-  validateUser,
-  (req, res) => {
-    //let users = db;
+//Create username async function
+async function usersPost(req, res) {
  
     try {
-     const errors = validationResult(req);
+      await Promise.all(validateUser.map((validation) => validation.run(req)));
+      const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
         console.log(errors);
         return res.status(400).render("error", {
           title: "Error 404",
-          /*Note that the validationResult will 
-          be an array of errors*/
+          //Note that the validationResult will
+          //be an array of errors
           errors: errors.array(),
         });
       } else {
-        users.push(req.body.username);
-        console.log(users);
-        return res.status(200).render("index", {
-          title: "Homepage",
-          users: users,
-        });
+        const { username } = req.body;
+        await db.insertUsername(username);
+        res.redirect("/");
       }
     } catch (error) {
       console.log(error);
@@ -73,5 +57,13 @@ exports.usersPost = [
         message: "An error occurred while creating the user.",
       });
     }
-  },
-];
+  
+}
+
+
+module.exports = {
+  usersListGet,
+  usersFormGet,
+  usersPost,
+  //validateUser (Used together with code app.post in app.js)
+};

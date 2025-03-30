@@ -4,6 +4,7 @@
 const express = require("express");
 const path = require("node:path");
 const usersRouter = require("./routes/usersRouter");
+//const usersController = require("./controllers/usersController");
 
 //Create instance of express
 const app = express();
@@ -32,6 +33,10 @@ app.use(express.urlencoded({extended: true}));
 
 //In case the form data is being sent as JSON
 //app.use(express.json());
+
+//Use to validate user outside of async function in controller
+//app.post('/new', usersController.validateUser, usersController.usersPost);
+
 
 //Create routes
 
