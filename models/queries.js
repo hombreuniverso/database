@@ -5,7 +5,7 @@
 */
 
 //Imports
-const pool = require("./pool");
+const {pool} = require("../initialize-db");
 
 async function getAllUsernames() {
   const { rows } = await pool.query("SELECT * FROM usernames");

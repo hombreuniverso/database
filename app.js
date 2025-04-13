@@ -4,18 +4,15 @@
 const express = require("express");
 const path = require("node:path");
 const usersRouter = require("./routes/usersRouter");
+const testConnection = require("./test-connection");
+const { initializeDatabase, pool} = require("./initialize-db");
+
+
 //const usersController = require("./controllers/usersController");
 
 //Create instance of express
 const app = express();
 
-//Set port variable
-const PORT = process.env.PORT || 3000;
-
-//Create server
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
 
 //Set view engine
 app.set("views", path.join(__dirname, "views"));
@@ -37,9 +34,22 @@ app.use(express.urlencoded({extended: true}));
 //Use to validate user outside of async function in controller
 //app.post('/new', usersController.validateUser, usersController.usersPost);
 
+// Call testConnection and initializeDatabase after Express app is configured
+testConnection();
+initializeDatabase();
 
 //Create routes
 
 //Users router
 app.use("/", usersRouter);
 
+
+//Start listening for requests last
+
+//Set port variable
+const PORT = process.env.PORT || 3000;
+
+//Create server
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
